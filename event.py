@@ -123,3 +123,9 @@ class logEventList:
         displayWidgets = self.getListOfDisplayWidgets()
         for i in range(len(displayWidgets)):
             self.theInputList[i] = displayWidgets[i]  # in theory this should be smart?
+    
+    def toString(self):
+        theStr = ''
+        for event in self.theEvents:
+            theStr += event.toString()+'\n'
+        return theStr

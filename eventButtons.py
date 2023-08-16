@@ -1,5 +1,7 @@
 import urwid
 from eventTypes import *
+import os
+import datetime
 
 
 def runStartEvent(button, user_data=None):
@@ -48,7 +50,15 @@ def shiftEndEvent(button, user_data=None):
 
 
 def writeLogEvent(button, user_data=None):
-    pass
+    currentTime = datetime.datetime.now().strftime("%H%M_%d_%m")
+    fileName = f'ELOG_{currentTime}.txt'
+
+    completeLog = button.theLogEventList.toString()
+
+    os.makedirs('ELOGS', exist_ok=True)
+
+    with open(f'ELOGS/{fileName}', 'w') as theFile:
+        theFile.write(completeLog)
 
 
 runStartButton = urwid.Button(
